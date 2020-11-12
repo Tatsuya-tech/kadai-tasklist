@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   before_save { self.email.downcase! }
+
   
   validates :name, presence: true, length: {maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 },
@@ -7,6 +8,8 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
                     
   has_secure_password
-
+  
+  #関係追加、ユーザー削除に伴いタスクも削除
+  has_many :tasks, dependent: :destroy
 
 end
