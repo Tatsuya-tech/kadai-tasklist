@@ -9,7 +9,8 @@ class User < ApplicationRecord
                     
   has_secure_password
   
-  #関係追加、ユーザー削除に伴いタスクも削除
-  has_many :tasks, dependent: :destroy
+  #関係追加
+  has_many :tasks
+  #dependent: :destroy
 
 end
